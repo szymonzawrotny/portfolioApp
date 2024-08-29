@@ -4,9 +4,31 @@
     box-sizing: border-box;
 }
 
+html{
+    font-family:arial;
+    scroll-behavior: smooth;
+}
+
 .app{
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    min-height:100vh;
+    display:flex;
+    flex-direction: column;
+    background-color:azure;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+::-webkit-scrollbar-thumb:hover
+{
+    background-color:#555;
 }

@@ -1,10 +1,12 @@
 import "./style.scss";
 import react from 'react';
 
+import Main from '@/layouts/Main';
+
 const Home = ()=>{
   return(
     <div className="app">
-      <h1>portfolioApp</h1>
+      <Main/>
     </div>
   )
 }
