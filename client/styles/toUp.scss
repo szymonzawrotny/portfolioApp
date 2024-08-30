@@ -1,0 +1,46 @@
+.toUp{
+    width:50px;
+    height:50px;
+    position: fixed;
+    right:25px;
+    bottom:25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index:1;
+    font-size:24px;
+    cursor:pointer;
+}
+
+.toUp::after{
+    content: "";
+    position: absolute;
+    left:5%;
+    top:-10%;
+    width:100%;
+    height:100%;
+    border: 2px solid black;
+    transition: .3s ease-in-out;
+}
+
+.toUp:hover::after{
+    left:-10%;
+    top:5%;
+}
+
+.toUp::before{
+    content:"";
+    position: absolute;
+    left:-5%;
+    top:10%;
+    width:100%;
+    height:100%;
+    background-color: lightgreen;
+    z-index: -1;
+    transition: .3s ease-in-out;
+}
+
+.toUp:hover::before{
+    left:5%;
+    top:-5%;
+}

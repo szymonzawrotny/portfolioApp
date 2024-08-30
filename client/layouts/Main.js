@@ -6,6 +6,7 @@ import Courses from './Courses';
 import AboutMe from './AboutMe';
 import Contact from './Contact';
 import Footer from './Footer';
+import ToUp from './ToUp';
 
 const Main = ()=>{
     return(
@@ -16,6 +17,7 @@ const Main = ()=>{
             <AboutMe/>
             <Contact/>
             <Footer />
+            <ToUp/>
         </>
     )
 }

@@ -15,21 +15,21 @@ const fb = <FontAwesomeIcon icon={faFacebook} />
 
 const Nav = ()=>{
     const nav = useRef();
-    const handleScroll = ()=>{
-        const height = window.scrollY;
-        if(height > 100){
-            nav.current.classList.add('active');
-        }
-        else{
-            nav.current.classList.remove('active');
-        }
-    }
+    // const handleScroll = ()=>{
+    //     const height = window.scrollY;
+    //     if(height > 100){
+    //         nav.current.classList.add('active');
+    //     }
+    //     else{
+    //         nav.current.classList.remove('active');
+    //     }
+    // }
 
-    useEffect(
-        ()=>{
-            window.addEventListener("scroll",handleScroll);
-        },[]
-    )
+    // useEffect(
+    //     ()=>{
+    //         window.addEventListener("scroll",handleScroll);
+    //     },[]
+    // )
 
     return(
         <nav ref={nav}>
