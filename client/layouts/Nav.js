@@ -37,13 +37,13 @@ const Nav = ()=>{
                 <Link href="/">logo</Link>
             </div>
             <div className="social">
-                <a href="https://github.com/szymonzawrotny?tab=repositories">{gh}</a>
+                <a href="https://github.com/szymonzawrotny?tab=repositories" target='_blank'>{gh}</a>
             </div>
             <div className="social">
-                <a href="https://www.instagram.com/zawruto/">{ig}</a>
+                <a href="https://www.instagram.com/zawruto/" target='_blank'>{ig}</a>
             </div>
             <div className="social">
-                <a href="https://www.facebook.com/szymon.zawrotny">{fb}</a>
+                <a href="https://www.facebook.com/szymon.zawrotny" target='_blank'>{fb}</a>
             </div>
             <Link href="/faq"><button className="socialButton">faq</button></Link>
         </nav>
