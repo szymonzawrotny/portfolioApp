@@ -15,7 +15,7 @@ const limiter = rateLimit({
 
 app.use(express.json());
 app.use(cors());
-// app.use(limiter);
+app.use(limiter);
 
 const port = process.env.PORT || 5000;
 
@@ -57,7 +57,7 @@ app.post('/send', async (req, res) => {
     if (data.success || captchaToken == 'valid-token') {
       transporter.sendMail(mailOptions, (err) => {
         if (err) console.log(err);
-        else console.log('Wysłano!');
+        res.status(200).json({ message: 'Poprawnie wysłano' });
       });
     } else {
       console.log('nieprawidłowa captcha');
