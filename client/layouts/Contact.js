@@ -1,74 +1,116 @@
-'use client'
-import React,{useState} from 'react';
+'use client';
+import { useState, useEffect, useRef } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
+import { FaInstagram, FaFacebookSquare } from 'react-icons/fa';
+import '@/styles/contact.scss';
 
-import "@/styles/contact.scss";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInstagram } from '@fortawesome/free-brands-svg-icons'
-import { faFacebook } from '@fortawesome/free-brands-svg-icons'
+const Contact = () => {
+  const recaptchaRef = useRef();
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [formText, setFormText] = useState('');
+  const [captchaToken, setCaptchaToken] = useState('');
 
-const ig = <FontAwesomeIcon icon={faInstagram} />
-const fb = <FontAwesomeIcon icon={faFacebook} />
+  const onCaptchaChange = (token) => {
+    setCaptchaToken(token);
+  };
 
-const Contact = ()=>{
+  const handleForm = (e) => {
+    e.preventDefault();
+    recaptchaRef.current.execute();
 
-    const [email,setEmail] = useState("");
-    const [message,setMessage] = useState("");
-    const [formText,setFormText] = useState("");
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]{2,}$$/;
 
-    const handleForm = e =>{
-        e.preventDefault();
-        
-        if(email !== "" && message !== ""){
-            setEmail("");
-            setMessage("");
-            setFormText("Wysłano!");
-
-            fetch("http://localhost:5000/send",{
-                method:"POST",
-                body: JSON.stringify({
-                    email: email,
-                    message: message
-                }),
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-        } else{
-            setFormText("Hej, zanim wyślesz: wpisz swój email i napisz wiadomość")
-        }
+    if (!captchaToken) {
+      alert('CAPTCHA nie została jeszcze wygenerowana. Spróbuj ponownie.');
+      return;
     }
 
-    const handleEmailInput = e =>{ setEmail(e.target.value) }
+    if (email !== '' && message !== '') {
+      if (!email.match(regex)) {
+        setFormText('Popraw email!');
+        return;
+      }
 
-    const handleTextArea = e =>{ setMessage(e.target.value) }
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/send`, {
+        method: 'POST',
+        body: JSON.stringify({
+          email: email,
+          message: message,
+          captchaToken,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
+      setEmail('');
+      setMessage('');
+      setFormText('Wysłano!');
+    } else {
+      setFormText('Hej, zanim wyślesz: wpisz swój email i napisz wiadomość');
+    }
+  };
 
-    return(
-        <section className="contact">
-            <div className="contactText">kontakt</div>
-            <div className="contactLinks">
-                <p>Jeśli chcesz się ze mną skontaktować, poprostu napisz do mnie na instagramie...</p>
-                <a href="https://www.instagram.com/zawruto/" target='_blank'><span>{ig}</span>instagram</a>
-                <a href="https://www.facebook.com/szymon.zawrotny" target='_blank'><span>{fb}</span>messenger</a>
-            </div>
-            <form onSubmit={handleForm}>
-                <input 
-                    type="text" 
-                    id="email" 
-                    placeholder='Twój email...'
-                    value={email}   
-                    onChange={handleEmailInput}
-                />
-                <textarea 
-                    id="message" 
-                    placeholder='W czym mogę Ci pomóc?'
-                    value={message}
-                    onChange={handleTextArea}
-                ></textarea>
-                <span>{formText}</span>
-                <button>wyślij</button>
-            </form>
-        </section>
-    )
-}
+  const handleEmailInput = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleTextArea = (e) => {
+    setMessage(e.target.value);
+  };
+
+  useEffect(() => {
+    recaptchaRef.current.execute();
+  }, [email]);
+
+  return (
+    <section className="contact">
+      <div className="contactText">kontakt</div>
+      <div className="contactLinks">
+        <p>
+          Jeśli chcesz się ze mną skontaktować, poprostu napisz do mnie na
+          instagramie...
+        </p>
+        <a href="https://www.instagram.com/zawruto/" target="_blank">
+          <span>
+            <FaInstagram size={24} />
+          </span>
+          instagram
+        </a>
+        <a href="https://www.facebook.com/szymon.zawrotny" target="_blank">
+          <span>
+            <FaFacebookSquare size={24} />
+          </span>
+          messenger
+        </a>
+      </div>
+      <form onSubmit={handleForm}>
+        <input
+          type="text"
+          id="email"
+          placeholder="Twój email..."
+          value={email}
+          onChange={handleEmailInput}
+        />
+        <textarea
+          id="message"
+          placeholder="W czym mogę Ci pomóc?"
+          value={message}
+          onChange={handleTextArea}
+        ></textarea>
+        <span>{formText}</span>
+        <button>wyślij</button>
+      </form>
+      <div className="captchaBox">
+        <ReCAPTCHA
+          sitekey={process.env.NEXT_PUBLIC_CAPTCHA_KEY}
+          ref={recaptchaRef}
+          size="invisible"
+          onChange={onCaptchaChange}
+        />
+      </div>
+    </section>
+  );
+};
 export default Contact;

@@ -1,13 +1,8 @@
 'use client'
 import React from 'react';
+import { FaArrowUp } from 'react-icons/fa';
 
 import "@/styles/toUp.scss";
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
-
-const arrow = <FontAwesomeIcon icon={ faArrowUp} />
-
 
 const ToUp = ()=>{
     const handleMove = ()=>{
@@ -15,7 +10,7 @@ const ToUp = ()=>{
     }
 
     return(
-        <div className="toUp" onClick={handleMove}>{arrow}</div>
+        <div className="toUp" onClick={handleMove}><FaArrowUp/></div>
     )
 }
 export default ToUp;

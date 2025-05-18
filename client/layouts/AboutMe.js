@@ -17,7 +17,7 @@ const AboutMe = ()=>{
             <div className="whoIAm">
                 <h1>kim jestem?</h1>
                 <p>
-                    Na codzień - studentem Uniwersytetu Śląskiego, w nocy - fanem tanich energetyków i programowania. Mało śpię dużo robię, możesz na mnie liczyć ;)
+                    Absolwent uniwersytetu śląskiego, fan tanich energoli i programowania. Mało śpię dużo robię, możesz na mnie liczyć ;)
                 </p>
             </div>
             <div className="cooperation">

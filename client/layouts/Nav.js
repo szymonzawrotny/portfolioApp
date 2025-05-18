@@ -1,49 +1,26 @@
 'use client'
-import React, {useEffect, useRef} from 'react';
+import React, { useRef } from 'react';
 import Link from 'next/link'
+import { FaInstagram, FaFacebook, FaGithub } from 'react-icons/fa';
 
 import '@/styles/nav.scss';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
-import { faInstagram } from '@fortawesome/free-brands-svg-icons'
-import { faFacebook } from '@fortawesome/free-brands-svg-icons'
-
-const gh = <FontAwesomeIcon icon={faGithub} />
-const ig = <FontAwesomeIcon icon={faInstagram} />
-const fb = <FontAwesomeIcon icon={faFacebook} />
-
 const Nav = ()=>{
     const nav = useRef();
-    // const handleScroll = ()=>{
-    //     const height = window.scrollY;
-    //     if(height > 100){
-    //         nav.current.classList.add('active');
-    //     }
-    //     else{
-    //         nav.current.classList.remove('active');
-    //     }
-    // }
-
-    // useEffect(
-    //     ()=>{
-    //         window.addEventListener("scroll",handleScroll);
-    //     },[]
-    // )
 
     return(
         <nav ref={nav}>
             <div className="logo">
-                <Link href="/">logo</Link>
+                <Link href="/">szymonzawrotny</Link>
             </div>
             <div className="social">
-                <a href="https://github.com/szymonzawrotny?tab=repositories" target='_blank'>{gh}</a>
+                <a href="https://github.com/szymonzawrotny?tab=repositories" target='_blank'><FaGithub size={26}/></a>
             </div>
             <div className="social">
-                <a href="https://www.instagram.com/zawruto/" target='_blank'>{ig}</a>
+                <a href="https://www.instagram.com/zawruto/" target='_blank'><FaInstagram size={26}/></a>
             </div>
             <div className="social">
-                <a href="https://www.facebook.com/szymon.zawrotny" target='_blank'>{fb}</a>
+                <a href="https://www.facebook.com/szymon.zawrotny" target='_blank'><FaFacebook size={26}/></a>
             </div>
             <Link href="/faq"><button className="socialButton">faq</button></Link>
         </nav>

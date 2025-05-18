@@ -3,6 +3,7 @@
     min-height:600px;
     background-color: white;
     position: relative;
+    cursor: default;
     .contactText{
         position: absolute;
         top:5%;
@@ -36,8 +37,12 @@
             font-size:22px;
             text-decoration: none;
             color:black;
+            display: flex;
             span{
                 margin:0 10px;
+                display: flex;
+                align-items: center;
+                width:26px;
             }
         }
     }
@@ -67,6 +72,7 @@
         }
         textarea{
             height:35%;
+            resize: none;
         }
         span{
             display: block;
@@ -114,6 +120,10 @@
             top:-10%;
             left:5%;
         }
+    }
+    .captchaBox{
+        opacity: 0;
+        z-index: -1;
     }
 }
 

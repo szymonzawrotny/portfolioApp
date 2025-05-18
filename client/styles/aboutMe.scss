@@ -1,6 +1,6 @@
 .aboutMe{
-    flex-basis:120vh;
-    min-height:700px;
+    flex-basis:110vh;
+    min-height:650px;
     background-color: white;
     position: relative;
     .photoContainer{
@@ -27,6 +27,7 @@
         width:30vw;
         height:20vw;
         min-height:200px;
+        cursor: default;
         h1{
             font-size:62px;
             position: relative;
@@ -57,6 +58,7 @@
         right:20%;
         top:50%;
         z-index:1;
+        cursor: default;
         h1{
             font-size:32px;
             position: relative;
