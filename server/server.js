@@ -8,7 +8,7 @@ const app = express();
 
 const limiter = rateLimit({
   windowMs: 1440 * 60 * 1000,
-  limit: 4,
+  limit: 8,
   standardHeaders: 'draft-8',
   legacyHeaders: false,
 });
