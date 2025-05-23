@@ -32,7 +32,7 @@ const Contact = () => {
         return;
       }
 
-      fetch(`${process.env.NEXT_PUBLIC_API_URL}/send`, {
+      fetch(`/api/send`, {
         method: 'POST',
         body: JSON.stringify({
           email: email,
