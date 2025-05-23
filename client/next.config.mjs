@@ -4,10 +4,10 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:5000/:path*', // przekieruje np. /api/send -> http://localhost:5000/send
+        destination: 'http://api:5000/:path*',   //change api to localhost
       },
     ];
   },
-};;
+};
 
 export default nextConfig;
