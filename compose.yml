@@ -13,6 +13,7 @@ services:
       - ./server/.env
     networks:
       - app-network
+    restart: always
 
   frontend:
     build:
@@ -21,13 +22,16 @@ services:
     ports:
       - '3000:3000'
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
     env_file:
       - ./client/.env
     depends_on:
       - api
     networks:
       - app-network
+    restart: always
+    mem_limit: 512m
+    cpus: 0.5
 
 networks:
   app-network:
